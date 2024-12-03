@@ -20,6 +20,13 @@ defmodule GarbageidentifyWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/about", PageController, :about
+    get "/guide", PageController, :guide
+    get "/contact", PageController, :contact
+    get "/blog", PageController, :blog
+    get "/faq", PageController, :faq
+    get "/privacy", PageController, :privacy
+    get "/terms", PageController, :terms
   end
 
   scope "/api", GarbageidentifyWeb do

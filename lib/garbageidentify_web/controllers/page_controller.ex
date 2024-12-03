@@ -2,10 +2,29 @@
 
 defmodule GarbageidentifyWeb.PageController do
   use GarbageidentifyWeb, :controller
-  require Logger
 
   def home(conn, _params) do
-    render(conn, :home)
+    conn
+    |> assign(:page_title, "Home")
+    |> render(:home)
+  end
+
+  def about(conn, _params) do
+    conn
+    |> assign(:page_title, "About")
+    |> render(:about)
+  end
+
+  def guide(conn, _params) do
+    conn
+    |> assign(:page_title, "Recycling Guide")
+    |> render(:guide)
+  end
+
+  def contact(conn, _params) do
+    conn
+    |> assign(:page_title, "Contact")
+    |> render(:contact)
   end
 
   def upload(conn, %{"image" => image_params}) do
