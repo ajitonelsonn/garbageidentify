@@ -28,6 +28,12 @@ defmodule GarbageidentifyWeb.PageController do
     |> render(:contact)
   end
 
+  def health(conn, _params) do
+    conn
+    |> put_resp_content_type("text/plain")
+    |> send_resp(200, "ok")
+  end
+
   def upload(conn, %{"image" => image_params}) do
     Logger.info("Received upload request with params: #{inspect(image_params)}")
 

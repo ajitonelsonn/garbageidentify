@@ -58,8 +58,7 @@ defmodule Garbageidentify.MixProject do
       {:bandit, "~> 1.5"},
       {:httpoison, "~> 2.0"},
       {:tesla, "~> 1.8"},
-      {:hackney, "~> 1.18"},
-      {:dotenv, "~> 3.0.0", only: [:dev, :test]}
+      {:hackney, "~> 1.18"}
     ]
   end
 

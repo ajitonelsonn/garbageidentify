@@ -27,6 +27,7 @@ defmodule GarbageidentifyWeb.Router do
     get "/faq", PageController, :faq
     get "/privacy", PageController, :privacy
     get "/terms", PageController, :terms
+    get "/health", PageController, :health
   end
 
   scope "/api", GarbageidentifyWeb do

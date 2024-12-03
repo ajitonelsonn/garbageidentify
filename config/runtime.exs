@@ -1,3 +1,5 @@
+# config/runtime.exs
+
 import Config
 
 # config/runtime.exs is executed for all environments, including
@@ -5,21 +7,6 @@ import Config
 # system starts, so it is typically used to load production configuration
 # and secrets from environment variables or elsewhere. Do not define
 # any compile-time configuration in here, as it won't be applied.
-# The block below contains prod specific runtime configuration.
-
-# ## Using releases
-#
-# If you use `mix release`, you need to explicitly enable the server
-# by passing the PHX_SERVER=true when you start it:
-#
-#     PHX_SERVER=true bin/garbageidentify start
-#
-# Alternatively, you can use `mix phx.gen.release` to generate a `bin/server`
-# script that automatically sets the env var above.
-if System.get_env("PHX_SERVER") do
-  config :garbageidentify, GarbageidentifyWeb.Endpoint, server: true
-end
-
 if config_env() == :prod do
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you
@@ -33,22 +20,33 @@ if config_env() == :prod do
       You can generate one by calling: mix phx.gen.secret
       """
 
-  host = System.get_env("PHX_HOST") || "example.com"
-  port = String.to_integer(System.get_env("PORT") || "4000")
+  # Configure Together API key
+  together_api_key =
+    System.get_env("TOGETHER_API_KEY") ||
+      raise """
+      environment variable TOGETHER_API_KEY is missing.
+      Please set it using: fly secrets set TOGETHER_API_KEY=your_key
+      """
 
-  config :garbageidentify, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
+  app_name =
+    System.get_env("FLY_APP_NAME") ||
+      raise "FLY_APP_NAME not available"
+
+  host = "#{app_name}.fly.dev"
 
   config :garbageidentify, GarbageidentifyWeb.Endpoint,
-    url: [host: host, port: 443, scheme: "https"],
+    server: true,
+    url: [host: host, port: 80],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
-      # See the documentation on https://hexdocs.pm/bandit/Bandit.html#t:options/0
-      # for details about using IPv6 vs IPv4 and loopback vs public addresses.
       ip: {0, 0, 0, 0, 0, 0, 0, 0},
-      port: port
+      port: String.to_integer(System.get_env("PORT") || "8080")
     ],
     secret_key_base: secret_key_base
+
+  config :garbageidentify, :together_api,
+    api_key: together_api_key
 
   # ## SSL Support
   #
@@ -74,39 +72,11 @@ if config_env() == :prod do
   # "priv/ssl/server.key". For all supported SSL configuration
   # options, see https://hexdocs.pm/plug/Plug.SSL.html#configure/1
   #
-  # We also recommend setting `force_ssl` in your config/prod.exs,
-  # ensuring no data is ever sent via http, always redirecting to https:
+  # We also recommend setting `force_ssl` in your endpoint, ensuring
+  # no data is ever sent via http, always redirecting to https:
   #
   #     config :garbageidentify, GarbageidentifyWeb.Endpoint,
   #       force_ssl: [hsts: true]
   #
   # Check `Plug.SSL` for all available options in `force_ssl`.
-
-  # ## Configuring the mailer
-  #
-  # In production you need to configure the mailer to use a different adapter.
-  # Also, you may need to configure the Swoosh API client of your choice if you
-  # are not using SMTP. Here is an example of the configuration:
-  #
-  #     config :garbageidentify, Garbageidentify.Mailer,
-  #       adapter: Swoosh.Adapters.Mailgun,
-  #       api_key: System.get_env("MAILGUN_API_KEY"),
-  #       domain: System.get_env("MAILGUN_DOMAIN")
-  #
-  # For this example you need include a HTTP client required by Swoosh API client.
-  # Swoosh supports Hackney and Finch out of the box:
-  #
-  #     config :swoosh, :api_client, Swoosh.ApiClient.Hackney
-  #
-  # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
-  if config_env() == :dev do
-    together_api_key = System.get_env("TOGETHER_API_KEY") ||
-      raise """
-      environment variable TOGETHER_API_KEY is missing.
-      Please set it in your .env file or export it in your shell
-      """
-
-    config :garbageidentify, :together_api,
-      api_key: together_api_key
-  end
 end
