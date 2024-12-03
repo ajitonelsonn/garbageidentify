@@ -35,4 +35,8 @@ garbageidentify-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Environment files
 .env
+.env.*
+config/dev.secret.exs
+config/prod.secret.exs

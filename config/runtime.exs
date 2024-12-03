@@ -99,4 +99,14 @@ if config_env() == :prod do
   #     config :swoosh, :api_client, Swoosh.ApiClient.Hackney
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
+  if config_env() == :dev do
+    together_api_key = System.get_env("TOGETHER_API_KEY") ||
+      raise """
+      environment variable TOGETHER_API_KEY is missing.
+      Please set it in your .env file or export it in your shell
+      """
+
+    config :garbageidentify, :together_api,
+      api_key: together_api_key
+  end
 end
