@@ -2,6 +2,7 @@
 
 defmodule GarbageidentifyWeb.PageController do
   use GarbageidentifyWeb, :controller
+  require Logger
 
   def home(conn, _params) do
     conn
