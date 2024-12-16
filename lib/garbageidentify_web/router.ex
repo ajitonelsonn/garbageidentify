@@ -23,11 +23,11 @@ defmodule GarbageidentifyWeb.Router do
     get "/about", PageController, :about
     get "/guide", PageController, :guide
     get "/contact", PageController, :contact
-    get "/blog", PageController, :blog
     get "/faq", PageController, :faq
+    get "/blog", PageController, :blog
     get "/privacy", PageController, :privacy
     get "/terms", PageController, :terms
-    get "/health", PageController, :health
+    get "/sitemap", PageController, :sitemap
   end
 
   scope "/api", GarbageidentifyWeb do

@@ -28,10 +28,34 @@ defmodule GarbageidentifyWeb.PageController do
     |> render(:contact)
   end
 
-  def health(conn, _params) do
+  def faq(conn, _params) do
     conn
-    |> put_resp_content_type("text/plain")
-    |> send_resp(200, "ok")
+    |> assign(:page_title, "FAQ")
+    |> render(:faq)
+  end
+
+  def blog(conn, _params) do
+    conn
+    |> assign(:page_title, "Blog")
+    |> render(:blog)
+  end
+
+  def privacy(conn, _params) do
+    conn
+    |> assign(:page_title, "Privacy Policy")
+    |> render(:privacy)
+  end
+
+  def terms(conn, _params) do
+    conn
+    |> assign(:page_title, "Terms of Service")
+    |> render(:terms)
+  end
+
+  def sitemap(conn, _params) do
+    conn
+    |> assign(:page_title, "Sitemap")
+    |> render(:sitemap)
   end
 
   def upload(conn, %{"image" => image_params}) do
