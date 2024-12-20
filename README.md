@@ -4,7 +4,9 @@ GITLs is an AI-powered web application built with Elixir and Phoenix Framework t
 
 ## Demo Video
 
-[Watch Demo](your_demo_video_link)
+[![GITLs Demo](https://img.youtube.com/vi/6NJ1-PGFSns/0.jpg)](https://www.youtube.com/watch?v=6NJ1-PGFSns)
+
+[Watch Full Demo on YouTube](https://www.youtube.com/watch?v=6NJ1-PGFSns)
 
 ## Why GITLs?
 
