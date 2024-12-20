@@ -38,7 +38,6 @@ Waste management is a significant challenge in Timor-Leste. GITLs aims to addres
 ### Prerequisites
 
 - Elixir 1.14 or later
-- Erlang/OTP 24 or later
 - Git
 
 ### Clone and Installation
@@ -67,15 +66,7 @@ mix deps.get
 mix compile
 ```
 
-4. Install and set up the frontend:
-
-```bash
-cd assets
-npm install
-cd ..
-```
-
-5. Start the Phoenix server:
+4. Start the Phoenix server:
 
 ```bash
 mix phx.server
