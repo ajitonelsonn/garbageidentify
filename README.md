@@ -50,14 +50,7 @@ git clone https://github.com/ajitonelsonn/garbageidentify.git
 cd garbageidentify
 ```
 
-2. Install Elixir dependencies:
-
-```bash
-mix deps.get
-mix compile
-```
-
-3. Set up environment variables:
+2. Set up environment variables:
    Create a `config/dev.secret.exs` file with:
 
 ```elixir
@@ -65,6 +58,13 @@ import Config
 
 config :garbageidentify, :together_api,
   api_key: "your_together_api_key"
+```
+
+3. Install Elixir dependencies:
+
+```bash
+mix deps.get
+mix compile
 ```
 
 4. Install and set up the frontend:
@@ -75,13 +75,7 @@ npm install
 cd ..
 ```
 
-5. Setup the database:
-
-```bash
-mix ecto.setup
-```
-
-6. Start the Phoenix server:
+5. Start the Phoenix server:
 
 ```bash
 mix phx.server
