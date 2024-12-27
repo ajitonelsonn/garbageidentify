@@ -1,4 +1,4 @@
-# GITLs (Garbage Identifier Timor Leste)
+# GITL
 
 GITLs is an AI-powered web application built with Elixir and Phoenix Framework that identify and properly dispose of waste materials. Using machine learning through the Together AI API, it provides instant identification and disposal recommendations for various types of garbage.
 
@@ -8,12 +8,6 @@ GITLs is an AI-powered web application built with Elixir and Phoenix Framework t
 
 [Watch Full Demo on YouTube](https://www.youtube.com/watch?v=6NJ1-PGFSns)
 
-## Why GITLs?
-
-Waste management is a significant challenge in Timor-Leste. GITLs aims to address this by providing an accessible, easy-to-use tool that:
-
-- Instantly identifies different types of waste materials
-- Provides specific disposal recommendations
 
 ## Technologies Used
 
